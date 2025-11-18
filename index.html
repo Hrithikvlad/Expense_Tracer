@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expense Tracker — HTML CSS JS</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+ 
+  <link rel="stylesheet" href="styles.css">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">ET</div>
+        <div>
+          <h1>Expense Tracker</h1>
+          <p class="lead">Track expenses quickly — LocalStorage based, Responsive and simple.</p>
+        </div>
+      </div>
+      <div>
+        <button id="exportBtn" class="btn ghost">Export CSV</button>
+        <button id="clearAll" class="btn" style="margin-left:8px">Clear All</button>
+      </div>
+    </header>
+
+    <div class="grid">
+     
+      <div>
+        <div class="card">
+          <h3>Add Expense</h3>
+          <form id="expenseForm">
+            <div class="row">
+              <div style="flex:1">
+                <label for="title">Title</label>
+                <input id="title" required placeholder="e.g. Groceries" />
+              </div>
+            </div>
+            <div class="row">
+              <div style="flex:1">
+                <label for="amount">Amount (₹)</label>
+                <input id="amount" type="number" min="0" step="0.01" required placeholder="0.00" />
+              </div>
+              <div style="width:130px">
+                <label for="category">Category</label>
+                <select id="category">
+                  <option value="Food">Food</option>
+                  <option value="Transport">Transport</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div style="flex:1">
+                <label for="date">Date</label>
+                <input id="date" type="date" required />
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn" id="saveBtn">Add Expense</button>
+              <button type="button" id="resetForm" class="btn ghost">Reset</button>
+            </div>
+          </form>
+
+          <div class="summary">
+            <div class="tile">
+              <h3>Total Balance</h3>
+              <p id="totalBalance">₹0.00</p>
+            </div>
+            <div class="tile">
+              <h3>Total Spent</h3>
+              <p id="totalSpent" class="neg">₹0.00</p>
+            </div>
+            <div class="tile">
+              <h3>This Month</h3>
+              <p id="thisMonth">₹0.00</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Expenses by Category (Last 6 months)</h3>
+          <canvas id="catChart" height="220"></canvas>
+        </div>
+      </div>
+
+   
+      <div>
+        <div class="card">
+          <div class="controls">
+            <div class="filters">
+              <input id="search" placeholder="Search title or category" />
+              <select id="monthFilter">
+                <option value="all">All months</option>
+              </select>
+            </div>
+            <div>
+              <button id="addSample" class="btn ghost">Add Sample Data</button>
+            </div>
+          </div>
+
+          <div class="expenses-list" id="expensesList">
+         
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Monthly Overview</h3>
+          <canvas id="monthChart" height="160"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Built with ❤️ — Frontend only. Data is stored locally in your browser.
+    </footer>
+  </div>
+
+  
+  <script src="app.js"></script>
+</body>
+</html>
